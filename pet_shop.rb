@@ -45,7 +45,7 @@ def find_pet_by_name(shop, name)
      return pet
    end
   end
-  return nil
+  return nil #is this correct? is there a better way?
 end
 
 def remove_pet_by_name(shop, name)
@@ -66,4 +66,10 @@ end
 
 def add_pet_to_customer(customer, new_pet)
   customer[:pets]<<new_pet
+end
+
+#OPTIONAL
+
+def customer_can_afford_pet(customer, pet)
+  customer[:cash] >= pet[:price] ? true : false
 end
