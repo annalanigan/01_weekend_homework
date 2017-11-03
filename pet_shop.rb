@@ -22,6 +22,7 @@ def stock_count(shop)
   shop[:pets].count
 end
 
+# i would like to discuss this answer as I feel this is not the best solution.
 def pets_by_breed(shop, breed_name)
   new_array = []
   for pet in shop[:pets]
@@ -45,4 +46,16 @@ def find_pet_by_name(shop, name)
    end
   end
   return nil
+end
+
+def remove_pet_by_name(shop, name)
+  for pet in shop[:pets]
+    if pet[:name] == name
+     shop[:pets].delete(pet)
+   end
+  end
+end
+
+def add_pet_to_stock(shop, new_pet)
+  shop[:pets]<<new_pet
 end
