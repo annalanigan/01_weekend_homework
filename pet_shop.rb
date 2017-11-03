@@ -22,15 +22,14 @@ def stock_count(shop)
   shop[:pets].count
 end
 
-# i would like to discuss this answer as I feel this is not the best solution.
 def pets_by_breed(shop, breed_name)
-  new_array = []
+  breed_array = []
   for pet in shop[:pets]
     if pet[:breed] == breed_name
-      new_array.push(pet)
+      breed_array.push(pet)
     end
   end
-  return new_array
+  return breed_array
 end
 
 # def find_pet_by_name(shop, name)
@@ -45,7 +44,7 @@ def find_pet_by_name(shop, name)
      return pet
    end
   end
-  return nil #is this correct? is there a better way?
+  return nil
 end
 
 def remove_pet_by_name(shop, name)
@@ -72,4 +71,15 @@ end
 
 def customer_can_afford_pet(customer, pet)
   customer[:cash] >= pet[:price] ? true : false
+end
+
+
+
+def sell_pet_to_customer(shop, pet, customer)
+ if customer_can_afford_pet(customer,pet)
+   add_pet_to_customer(customer, pet)
+   add_or_remove_cash(shop, pet[:price])
+   customer[:cash] -= pet[:price]
+   increase_pets_sold(shop, 1)
+ end
 end
