@@ -32,12 +32,6 @@ def pets_by_breed(shop, breed_name)
   return breed_array
 end
 
-# def find_pet_by_name(shop, name)
-#   for pet in shop[:pets]
-#      return pet if pet[:name] == name
-#   end
-# end
-
 def find_pet_by_name(shop, name)
   for pet in shop[:pets]
     if pet[:name] == name
@@ -47,12 +41,17 @@ def find_pet_by_name(shop, name)
   return nil
 end
 
+# def remove_pet_by_name(shop, name)
+#   for pet in shop[:pets]
+#     if pet[:name] == name
+#      shop[:pets].delete(pet)
+#    end
+#   end
+# end
+
 def remove_pet_by_name(shop, name)
-  for pet in shop[:pets]
-    if pet[:name] == name
-     shop[:pets].delete(pet)
-   end
-  end
+  pet = find_pet_by_name(shop, name)
+  shop[:pets].delete(pet)
 end
 
 def add_pet_to_stock(shop, new_pet)
