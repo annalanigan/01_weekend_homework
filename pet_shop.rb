@@ -32,15 +32,23 @@ def pets_by_breed(shop, breed_name)
   return breed_array
 end
 
+# # Homework solution from class notes:
+# def pets_by_breed(pet_shop, breed)
+#   matches = []
+#   for pet in pets_in_stock(pet_shop)
+#     matches << pet if(pet[:breed] == breed)
+#   end
+#   return matches
+# end
+
 def find_pet_by_name(shop, name)
   for pet in shop[:pets]
-    if pet[:name] == name
-     return pet
-   end
+     return pet if pet[:name] == name
   end
   return nil
 end
 
+# # my first solution:
 # def remove_pet_by_name(shop, name)
 #   for pet in shop[:pets]
 #     if pet[:name] == name
@@ -54,8 +62,30 @@ def remove_pet_by_name(shop, name)
   shop[:pets].delete(pet)
 end
 
+# # HOMEWORK SOLUTION:
+# Why the Index - implications further down the code? by removing an item...?
+#
+# def remove_pet_by_name(pet_shop, pet_name)
+#   pets = pets_in_stock(pet_shop)
+#   index = 0
+#   match = nil
+#
+#   for pet in pets
+#     if(pet[:name] == pet_name)
+#       match = pet
+#       break
+#     end
+#     index += 1
+#   end
+#
+#   return if(match == nil)
+#   pets.delete_at(index)
+# end
+
+
+
 def add_pet_to_stock(shop, new_pet)
-  shop[:pets]<<new_pet
+  shop[:pets] << new_pet
 end
 
 def customer_pet_count(customer)
@@ -63,7 +93,7 @@ def customer_pet_count(customer)
 end
 
 def add_pet_to_customer(customer, new_pet)
-  customer[:pets]<<new_pet
+  customer[:pets] << new_pet
 end
 
 #OPTIONAL
@@ -79,6 +109,23 @@ def sell_pet_to_customer(shop, pet, customer)
    add_pet_to_customer(customer, pet)
    add_or_remove_cash(shop, pet[:price])
    customer[:cash] -= pet[:price]
+   remove_pet_by_name(shop, pet[:name])
    increase_pets_sold(shop, 1)
  end
 end
+
+# # OPTIONALS from the HOmework Solution::
+#
+# def customer_can_afford_pet(customer, pet)
+#   return customer[:cash] >= pet[:price]
+# end
+#
+# def sell_pet_to_customer(pet_shop, pet, customer)
+#   return if (pet == nil)
+#   return if !(customer_can_afford_pet(customer, pet))
+#
+#   add_pet_to_customer(customer,pet)
+#   add_or_remove_cash(pet_shop, pet[:price])
+#   remove_pet_by_name(pet_shop, pet[:name])
+#   increase_pets_sold(pet_shop,1)
+# end
